@@ -1,0 +1,27 @@
+clear;
+
+L=imread('imm/tsul.tif');
+R=imread('imm/tsur.tif');
+
+tic
+%calcolo della mappa di disparità L su R
+DMLR=disparity(L,R,60);
+%calcolo della mappa di disparità R su L
+for i=1:3
+    L(:,:,i)=fliplr(L(:,:,i));
+    R(:,:,i)=fliplr(R(:,:,i));
+end
+DMRL=disparity(R,L,60);
+DMRL=fliplr(DMRL);
+t=toc
+
+clc;
+fprintf('\nTempo impiegato: %i secondi\n',uint8(t));
+
+%rendering dei risultati
+figure,
+title('Mappa di disparita riferita all''immagine sinistra'),
+imagesc(DMLR);
+figure,
+title('Mappa di disparita riferita all''immagine sinistra'),
+imagesc(DMRL);

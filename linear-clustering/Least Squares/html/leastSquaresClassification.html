@@ -1,0 +1,125 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+   <!--
+This HTML is auto-generated from an M-file.
+To make changes, update the M-file and republish this document.
+      --><title>leastSquaresClassification</title><meta name="generator" content="MATLAB 7.9"><meta name="date" content="2009-12-25"><meta name="m-file" content="leastSquaresClassification"><style type="text/css">
+
+body {
+  background-color: white;
+  margin:10px;
+}
+
+h1 {
+  color: #990000; 
+  font-size: x-large;
+}
+
+h2 {
+  color: #990000;
+  font-size: medium;
+}
+
+/* Make the text shrink to fit narrow windows, but not stretch too far in 
+wide windows. */ 
+p,h1,h2,div.content div {
+  max-width: 600px;
+  /* Hack for IE6 */
+  width: auto !important; width: 600px;
+}
+
+pre.codeinput {
+  background: #EEEEEE;
+  padding: 10px;
+}
+@media print {
+  pre.codeinput {word-wrap:break-word; width:100%;}
+} 
+
+span.keyword {color: #0000FF}
+span.comment {color: #228B22}
+span.string {color: #A020F0}
+span.untermstring {color: #B20000}
+span.syscmd {color: #B28C00}
+
+pre.codeoutput {
+  color: #666666;
+  padding: 10px;
+}
+
+pre.error {
+  color: red;
+}
+
+p.footer {
+  text-align: right;
+  font-size: xx-small;
+  font-weight: lighter;
+  font-style: italic;
+  color: gray;
+}
+
+  </style></head><body><div class="content"><pre class="codeinput"><span class="comment">%Author: REDJAN F. SHABANI</span>
+<span class="comment">%Universita' degli studi di Roma "LA SAPIENZA"</span>
+<span class="comment">%Ingegneria Informatica - Intelligenza Artificiale</span>
+<span class="comment">%Version: Dec. 2009</span>
+
+<span class="comment">%Reference - Christopher M. Bishop, Pattern Recognition and Machine Learning</span>
+
+<span class="comment">%input (C1,C2), datasets of two classes. 2-by-N1 and 2-by-N2 matrices</span>
+<span class="comment">%containing the 2D-data as coloumn vectors.</span>
+<span class="comment">%output (a,b,c), linear discriminant parametres whos equation is ax1+bx2+c=0</span>
+
+<span class="keyword">function</span> [a,b,c]=leastSquaresClassification(C1,C2)
+    [~,N1]=size(C1);<span class="comment">%number of class-one data</span>
+    [~,N2]=size(C2);<span class="comment">%number of class-two data</span>
+
+    N=N1+N2;<span class="comment">%total number of data</span>
+
+    C=[C1(1:2,:) C2(1:2,:)];<span class="comment">%dataset with data from both classes</span>
+    X=[ ones(N,1) , C' ];<span class="comment">%matrix of inputs in homogeneus coordinates</span>
+
+    T=[C1(3,:),C2(3,:)]';<span class="comment">%vector of target values</span>
+
+    W=pinv(X)*T;<span class="comment">%vector of weights</span>
+
+    a=W(2);b=W(3);c=W(1);<span class="comment">%returning parametres</span>
+<span class="keyword">end</span>
+</pre><pre class="codeoutput">Input argument "C1" is undefined.
+
+Error in ==&gt; leastSquaresClassification at 13
+    [~,N1]=size(C1);%number of class-one data
+</pre><p class="footer"><br>
+      Published with MATLAB&reg; 7.9<br></p></div><!--
+##### SOURCE BEGIN #####
+%Author: REDJAN F. SHABANI
+%Universita' degli studi di Roma "LA SAPIENZA"
+%Ingegneria Informatica - Intelligenza Artificiale
+%Version: Dec. 2009
+
+%Reference - Christopher M. Bishop, Pattern Recognition and Machine Learning
+
+%input (C1,C2), datasets of two classes. 2-by-N1 and 2-by-N2 matrices
+%containing the 2D-data as coloumn vectors.
+%output (a,b,c), linear discriminant parametres whos equation is ax1+bx2+c=0
+
+function [a,b,c]=leastSquaresClassification(C1,C2)
+    [~,N1]=size(C1);%number of class-one data
+    [~,N2]=size(C2);%number of class-two data
+    
+    N=N1+N2;%total number of data
+
+    C=[C1(1:2,:) C2(1:2,:)];%dataset with data from both classes
+    X=[ ones(N,1) , C' ];%matrix of inputs in homogeneus coordinates
+    
+    T=[C1(3,:),C2(3,:)]';%vector of target values
+    
+    W=pinv(X)*T;%vector of weights
+    
+    a=W(2);b=W(3);c=W(1);%returning parametres
+end
+##### SOURCE END #####
+--></body></html>

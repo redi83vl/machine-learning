@@ -1,0 +1,9 @@
+Per eseguire il prcesso di rilevamento dei ciorner bisogna eseguire dal com-
+mand window di MatLab lo script hcd.m
+
+hcd(<I>,<sigma>,<tau>);
+
+I - rappresentazione matriciale dell'immagine da cornerizzare
+sigma - parametro della gaussiano filtrante
+tau - paramtro in [0,1] che definisce la soglia minima che devono avere i 
+corner per essere considerat tali.
